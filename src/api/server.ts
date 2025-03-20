@@ -4,7 +4,7 @@ import { TokenAnalysisAgent } from '../services/tokenAnalysis.js';
 import { WebSocketServer } from 'ws';
 import http from 'http';
 
-export async function startServer(port: number = 3000) {
+export async function startServer(port: number = 3007) {
   const app = express();
   const server = http.createServer(app);
   const wss = new WebSocketServer({ server });
