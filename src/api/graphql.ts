@@ -1,6 +1,6 @@
 // src/api/graphql.ts
-const { GraphQLClient } = require("graphql-request");
-const dotenv = require("dotenv");
+import type { GraphQLClient } from "graphql-request";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -11,20 +11,23 @@ const API_KEY = process.env.API_KEY || "";
 // const UNISWAP_API_URL = `https://gateway.thegraph.com/api/${API_KEY}/subgraphs/id/HMuAwufqZ1YCRmzL2SfHTVkzZovC9VL2UAKhjvRqKiR1`;
 const UNISWAP_API_URL = `https://gateway.thegraph.com/api/${API_KEY}/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV`;
 
-// Initialize GraphQL client
-export const graphQLClient = new GraphQLClient(UNISWAP_API_URL);
-// Initialize GraphQL client
+let graphQLClient: GraphQLClient;
 
-/**
- * Execute a dynamically generated GraphQL query.
- * @param query - The GraphQL query string.
- * @param variables - Optional variables for the query.
- * @returns The response data.
- */
+// Initialize client using dynamic import
+async function initializeClient() {
+  const { GraphQLClient } = await import("graphql-request");
+  graphQLClient = new GraphQLClient(UNISWAP_API_URL);
+}
+
+// Initialize immediately
+initializeClient();
+
+export { graphQLClient };
 export async function executeGraphQLQuery(
   query: string,
   variables?: any
 ): Promise<any> {
+  if (!graphQLClient) await initializeClient();
   try {
     console.log("Query::::::::", query);
     console.log("Variables::::::::", variables);
