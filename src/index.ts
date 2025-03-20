@@ -1,8 +1,7 @@
 // src/index.ts
 import dotenv from 'dotenv';
 import { runCLI } from './utils/cli.js';
-
-import { startServer } from './api/server'; // Updated import
+import { startServer } from './api/server.js'; // Add .js extension
 
 dotenv.config();
 

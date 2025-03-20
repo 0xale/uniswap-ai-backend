@@ -1,5 +1,5 @@
-import { anthropic } from "../api/anthropic";
-import { executeGraphQLQuery } from "../api/graphql";
+import { anthropic } from '../api/anthropic.js';
+import { executeGraphQLQuery } from '../api/graphql.js';
 
 export class TokenAnalysisAgent {
   private systemPrompt: string = `
@@ -536,8 +536,8 @@ try those possibilities until the result is generated from the query.
       // Step 3: Generate analysis using Claude
       return await this.generateAnalysis(userQuery, data);
     } catch (error) {
-      console.error("Error processing query:", error);
-      return "Failed to process your query. Please try again with a different request.";
+      console.error('Error processing query:', error);
+      return 'Failed to process your query. Please try again with a different request.';
     }
   }
 
@@ -548,18 +548,18 @@ try those possibilities until the result is generated from the query.
 
     try {
       const response = await anthropic.messages.create({
-        model: "claude-3-7-sonnet-20250219",
+        model: 'claude-3-7-sonnet-20250219',
         max_tokens: 1000,
         system: this.systemPrompt,
         messages: [
           {
-            role: "user",
+            role: 'user',
             content: prompt,
           },
         ],
       });
 
-      if (response.content[0].type === "text") {
+      if (response.content[0].type === 'text') {
         // Extract the GraphQL query from the response
         const responseText = response.content[0].text;
 
@@ -571,7 +571,7 @@ try those possibilities until the result is generated from the query.
           const query = queryMatch[1].trim();
 
           // Log the query for debugging
-          console.log("Generated GraphQL Query:", query);
+          console.log('Generated GraphQL Query:', query);
 
           // Return the query as a string
           return { query };
@@ -579,12 +579,12 @@ try those possibilities until the result is generated from the query.
           throw new Error("No valid GraphQL query found in Claude's response.");
         }
       } else {
-        throw new Error("Expected a text response from Claude");
+        throw new Error('Expected a text response from Claude');
       }
     } catch (error) {
-      console.error("Error generating GraphQL query:", error);
+      console.error('Error generating GraphQL query:', error);
       throw new Error(
-        "Failed to generate GraphQL query. Please try again later."
+        'Failed to generate GraphQL query. Please try again later.'
       );
     }
   }
@@ -606,25 +606,25 @@ ${dataJson}
 
     try {
       const response = await anthropic.messages.create({
-        model: "claude-3-7-sonnet-20250219",
+        model: 'claude-3-7-sonnet-20250219',
         max_tokens: 4000,
         system: this.systemPrompt,
         messages: [
           {
-            role: "user",
+            role: 'user',
             content: prompt,
           },
         ],
       });
 
-      if (response.content[0].type === "text") {
+      if (response.content[0].type === 'text') {
         return response.content[0].text;
       } else {
-        throw new Error("Expected a text response from Claude");
+        throw new Error('Expected a text response from Claude');
       }
     } catch (error) {
-      console.error("Error generating analysis:", error);
-      return "Failed to generate analysis. Please try again later.";
+      console.error('Error generating analysis:', error);
+      return 'Failed to generate analysis. Please try again later.';
     }
   }
 }
