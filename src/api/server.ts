@@ -13,6 +13,11 @@ export async function startServer(port: number = 8003) {
 
   app.use(express.json());
 
+  // Root route
+  app.get('/', (_req, res) => {
+    res.json({ status: 'Server is running' });
+  });
+
   // Add hello route
   app.get('/hello', (_req, res) => {
     res.json({ message: 'Hello Uniswap!' });
