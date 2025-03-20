@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: uniswap-token-analysis
+    env: node
+    buildCommand: yarn install && yarn build
+    startCommand: yarn start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: API_KEY
+        sync: false

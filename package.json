@@ -6,14 +6,16 @@
   "type": "module",
   "scripts": {
     "start": "node dist/index.js server",
-    "build": "tsc && cp package.json dist/",
+    "build": "tsc && cp package.json dist/ && cp .env dist/",
     "dev": "node --loader ts-node/esm src/index.ts",
     "cli": "node --loader ts-node/esm src/index.ts cli",
     "server": "node --loader ts-node/esm src/index.ts server",
+    "postinstall": "yarn build",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"src/**/*.ts\"",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "vercel-build": "yarn build"
   },
   "engines": {
     "node": "18.x"

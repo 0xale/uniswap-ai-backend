@@ -11,6 +11,7 @@ async function main() {
 
   if (mode === 'server') {
     const port = parseInt(args[1]) || 8003;
+    console.log('Starting server on port:', port);
     await startServer(port);
   } else if (mode === 'cli') {
     await runCLI();
