@@ -1,8 +1,9 @@
 {
   "name": "uniswap-token-analysis",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.cjs",
   "license": "MIT",
+  "type": "commonjs",
   "scripts": {
     "start": "node dist/index.js server",
     "build": "tsc",
@@ -26,6 +27,5 @@
     "@types/ws": "^8.18.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
-  },
-  "type": "module"
+  }
 }
