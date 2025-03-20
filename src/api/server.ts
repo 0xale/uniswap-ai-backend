@@ -13,7 +13,7 @@ export async function startServer(port: number = 3000) {
 
   app.use(express.json());
 
-  // Regular HTTP endpoint
+  // Regular HTTP
   const analyzeHandler: RequestHandler = async (req, res) => {
     try {
       const { query } = req.body;
