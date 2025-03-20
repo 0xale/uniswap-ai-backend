@@ -1,0 +1,27 @@
+{
+  "name": "uniswap-token-analysis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js server",
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "cli": "ts-node src/index.ts cli",
+    "server": "ts-node src/index.ts server"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "graphql-request": "^7.1.2",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "@types/ws": "^8.18.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
