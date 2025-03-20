@@ -13,6 +13,11 @@ export async function startServer(port: number = 8003) {
 
   app.use(express.json());
 
+  // Add hello route
+  app.get('/hello', (_req, res) => {
+    res.json({ message: 'Hello Uniswap!' });
+  });
+
   // Regular HTTP
   const analyzeHandler: RequestHandler = async (req, res) => {
     try {
