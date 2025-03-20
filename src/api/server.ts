@@ -1,7 +1,7 @@
 // src/api/server.ts
 import express, { RequestHandler } from "express";
 import { TokenAnalysisAgent } from "../services/tokenAnalysis";
-import { Server as WebSocketServer } from "ws";
+import { WebSocketServer } from "ws";
 import http from "http";
 
 export async function startServer(port: number = 3000) {

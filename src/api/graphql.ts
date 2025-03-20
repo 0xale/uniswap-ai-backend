@@ -1,6 +1,6 @@
 // src/api/graphql.ts
-import { GraphQLClient } from "graphql-request";
-import dotenv from "dotenv";
+const { GraphQLClient } = require("graphql-request");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
