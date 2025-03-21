@@ -1,5 +1,3 @@
-// src/types/types.ts
-
 export interface Token {
   id: string;
   symbol: string;
