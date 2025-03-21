@@ -10,7 +10,7 @@ async function main() {
   const mode = args[0] || 'cli';
 
   if (mode === 'server') {
-    const port = parseInt(args[1]) || 8003;
+    const port = parseInt(args[1]) || 3000;
     console.log('Starting server on port:', port);
     await startServer(port);
   } else if (mode === 'cli') {
