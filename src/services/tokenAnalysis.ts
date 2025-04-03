@@ -11,6 +11,24 @@ When presenting data, include relevant metrics and brief observations.
 Present all financial data in a clear, readable format with proper units.
 `;
 
+  private systemPromptforResponse: string = `
+    dont use any markdown formatting in the response.
+    dont add in response "Based on the data provided",
+    dont use any backticks in the response.
+    dont use any bullet points in the response.
+    dont use any headings in the response.
+    dont use any code blocks in the response.
+    dont use any markdown symbols in the response.
+    i want the response to be in a single, continuous paragraph with no line breaks.
+    if presenting numbers or metrics, separate them with commas only.
+    example of acceptable format: "The token has 24h volume of 1500000, price of 0.45, and liquidity of 2500000."   
+    summarize the data in a single, continuous paragraph with no line breaks.
+    dont use "Based on the data provided" or any other such phrases.
+    dont mention the data source in the response.
+    dont mention Uniswap V3 in the response.
+    
+`;
+
   private queryGenerationPrompt: string = `
 You are an expert in generating GraphQL queries based on a given schema. Your task is to create precise and accurate queries using only the schema provided below. Do not add any fields, entities, or relationships that are not explicitly defined in the schema. Ensure that the queries are 100% compliant with the schema and do not include any assumptions or external information.
 
@@ -608,7 +626,7 @@ ${dataJson}
       const response = await anthropic.messages.create({
         model: 'claude-3-7-sonnet-20250219',
         max_tokens: 4000,
-        system: this.systemPrompt,
+        system: this.systemPromptforResponse,
         messages: [
           {
             role: 'user',

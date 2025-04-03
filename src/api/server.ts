@@ -26,15 +26,15 @@ export async function startServer(port: number = 3000) {
   // Regular HTTP
   const analyzeHandler: RequestHandler = async (req, res) => {
     try {
-      const { query } = req.body;
+      const { text } = req.body;
 
-      if (!query) {
+      if (!text) {
         res.status(400).json({ error: 'Query is required' });
         return;
       }
 
-      const analysis = await agent.processQuery(query);
-      res.json({ analysis });
+      const analysis = await agent.processQuery(text);
+      res.json({ text: analysis });
     } catch (error) {
       console.error('Error processing request:', error);
       res.status(500).json({ error: 'Failed to process query' });
